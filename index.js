@@ -25,7 +25,7 @@ app.post("/posts", async (req,res)=>{
             data:{
                 id,title
             }
-     });
+     }).catch(e=>console.log(e.message));
      res.status(201).send(posts[id]);
 });
 
