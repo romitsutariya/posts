@@ -11,7 +11,7 @@ const app= express();
 
 //Env Configuration
 const VERSION=process.env.VERSION || 'Latest';
-const EVENT_HOST=process.env.VERSION || '127.0.0.1:7000';  // please add IP + post name
+const EVENT_HOST=process.env.EVENT_HOST || '127.0.0.1:7000';  // please add IP + post name
 
 app.use(cors())
 app.use(bp.json());
