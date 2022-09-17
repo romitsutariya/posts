@@ -11,6 +11,7 @@ const app= express();
 
 //Env Configuration
 const VERSION=process.env.VERSION || 'Latest';
+const EVENT_HOST=process.env.VERSION || '127.0.0.1:7000';  // please add IP + post name
 
 app.use(cors())
 app.use(bp.json());
@@ -26,7 +27,7 @@ app.post("/posts", async (req,res)=>{
      posts[id]={
         id,title
      };
-    await axios.post("http://localhost:7000/events",{
+    await axios.post(`http://${EVENT_HOST}/events`,{
             type:"PostCreated",
             data:{
                 id,title
@@ -42,4 +43,6 @@ app.post("/events", (req,res)=>{
 
 app.listen(PORT,()=>{
     console.log(`Listening on ${PORT} and version is ${VERSION}`)
+
+    console.log(`Pub/Sub ip address is ${EVENT_HOST}`)
 });
