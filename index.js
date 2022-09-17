@@ -1,10 +1,16 @@
 const express= require('express');
 const { randomBytes} =require("crypto")
 const bp =require("body-parser")
-var cors = require('cors');
+const cors = require('cors');
 const { default: axios } = require('axios');
+require('dotenv').config()
+
+
 const PORT=4000;
 const app= express();
+
+//Env Configuration
+const VERSION=process.env.VERSION || 'Latest';
 
 app.use(cors())
 app.use(bp.json());
@@ -35,5 +41,5 @@ app.post("/events", (req,res)=>{
 });
 
 app.listen(PORT,()=>{
-    console.log(`Listening on ${PORT}`)
+    console.log(`Listening on ${PORT} and version is ${VERSION}`)
 });
